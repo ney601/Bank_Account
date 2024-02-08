@@ -12,7 +12,7 @@ public class BankAccount {
     private double overdraft;
 
     // CONSTRUCTOR
-    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, String accountNumber, double balance, String accountType, double overdraft){
+    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth, String accountNumber, double balance, String accountType){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -20,10 +20,6 @@ public class BankAccount {
         this.balance = 0;
         this.accountType = accountType;
         this.overdraft = overdraft;
-    }
-
-    public BankAccount() {
-
     }
 
     // GETTERS & SETTERS
@@ -88,11 +84,12 @@ public class BankAccount {
         return balance + amount;
     }
 
-    public Double withdrawal(int amount) {
-        if(balance - amount > overdraft) {
-            return balance -= amount;
+    public double withdrawal(int amount) {
+        double finalBalance = balance - amount;
+        if(balance - amount >= -overdraft) {
+            return balance = finalBalance;
         }
-        return null;
+        return 0.0;
     }
 
     public static Double payInterest(double interest) {
